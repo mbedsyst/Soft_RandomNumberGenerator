@@ -1,0 +1,7 @@
+../Src/Soft_RNG.c:5:13:TIM2_Init	4	static
+../Src/Soft_RNG.c:14:17:GetHardwareSeed	4	static
+../Src/Soft_RNG.c:19:17:GetLFSR	24	static
+../Src/Soft_RNG.c:30:17:GetXORShift	24	static
+../Src/Soft_RNG.c:39:17:GetFNVHash	24	static
+../Src/Soft_RNG.c:47:6:SoftRNG_Init	8	static
+../Src/Soft_RNG.c:53:10:SoftRNG_Generate	32	static

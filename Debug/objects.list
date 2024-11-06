@@ -1,6 +1,7 @@
 "./Src/LED.o"
 "./Src/SPI.o"
 "./Src/SYSTICK.o"
+"./Src/Soft_RNG.o"
 "./Src/UART.o"
 "./Src/W25Qxx.o"
 "./Src/main.o"

@@ -1,0 +1,7 @@
+../Src/Soft_RNG.c:5:13:TIM2_Init	1
+../Src/Soft_RNG.c:14:17:GetHardwareSeed	1
+../Src/Soft_RNG.c:19:17:GetLFSR	2
+../Src/Soft_RNG.c:30:17:GetXORShift	1
+../Src/Soft_RNG.c:39:17:GetFNVHash	1
+../Src/Soft_RNG.c:47:6:SoftRNG_Init	1
+../Src/Soft_RNG.c:53:10:SoftRNG_Generate	1
