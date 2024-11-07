@@ -11,9 +11,20 @@ static void TIM2_Init(void)
 	TIM2->CR1 |= TIM_CR1_CEN;
 }
 
+static void TIM3_Init(void)
+{
+	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	TIM2->CR1 |= TIM_CR1_DIR;
+	TIM2->PSC = 479;
+	TIM2->ARR = 0xFFFFFFFF;
+	TIM2->CR1 |= TIM_CR1_CEN;
+}
+
 static uint32_t GetHardwareSeed(void)
 {
-	return TIM2->CNT;
+	uint32_t count2 = TIM2->CNT;
+	uint32_t count3 = TIM3->CNT;
+	return (count2 ^ count3);
 }
 
 static uint16_t GetLFSR(uint16_t seed16)
@@ -47,6 +58,7 @@ static uint32_t GetFNVHash(uint32_t val)
 void SoftRNG_Init(void)
 {
 	TIM2_Init();
+	TIM3_Init();
 	UART2_Init();
 }
 
@@ -57,7 +69,7 @@ uint32_t SoftRNG_Generate(void)
 	uint16_t seed16 = seedValue & 0xFFFF;
 	uint16_t lfsrVal = GetLFSR(seed16);
 	uint32_t xorVal = GetXORShift(seedValue);
-	uint32_t combined = lfsrVal & xorVal;
+	uint32_t combined = (lfsrVal ^ xorVal) * 1664525 + 1013904223 ;
 	uint32_t randomVal = GetFNVHash(combined);
 	return randomVal;
 }

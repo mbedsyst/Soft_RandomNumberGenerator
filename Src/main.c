@@ -17,6 +17,7 @@ int main()
 	for(int i = 0; i < 100000; i++)
 	{
 		random = SoftRNG_Generate();
+		W25Q_WriteData(i, 0, 4, (uint8_t *)&random);
 		count++;
 	}
 
