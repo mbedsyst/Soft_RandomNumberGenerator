@@ -6,7 +6,7 @@ static void TIM2_Init(void)
 {
 	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
 	TIM2->CR1 &= ~TIM_CR1_DIR;
-	TIM2->PSC = 15;
+	TIM2->PSC = 1;
 	TIM2->ARR = 0xFFFFFFFF;
 	TIM2->CR1 |= TIM_CR1_CEN;
 }
