@@ -4,19 +4,20 @@
 #include "W25Qxx.h"
 #include "Soft_RNG.h"
 
+uint32_t count = 0;
+
 int main()
 {
 	uint32_t random;
 
 	LED_Init();
+	W25Q_Init();
 	SoftRNG_Init();
 
-	for(int i = 0; i < W25Q_PageCount; i++)
+	for(int i = 0; i < 100000; i++)
 	{
-		LED_Toggle();
 		random = SoftRNG_Generate();
-		W25Q_WriteData(i, 0, 2, (uint8_t *)&random);
-		LED_Toggle();
+		count++;
 	}
 
 	while(1)
