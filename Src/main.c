@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <stdint.h>
+
 #include "LED.h"
 #include "SYSTICK.h"
 #include "W25Qxx.h"
@@ -8,21 +10,21 @@ uint32_t count = 0;
 
 int main()
 {
-	uint32_t random;
+    uint32_t random;
 
-	LED_Init();
-	W25Q_Init();
-	SoftRNG_Init();
+    LED_Init();
+    W25Q_Init();
+    SoftRNG_Init();
 
-	for(int i = 0; i < 100000; i++)
-	{
-		random = SoftRNG_Generate();
-		W25Q_WriteData(i, 0, 4, (uint8_t *)&random);
-		count++;
-	}
+    for(int i = 0; i < 10000; i++)
+    {
+        random = SoftRNG_Generate();
+        W25Q_WriteData(i, 0, 4, (uint8_t *)&random);
+        count++;
+    }
 
-	while(1)
-	{
+    while(1)
+    {
 
-	}
+    }
 }

@@ -14,10 +14,10 @@ static void TIM2_Init(void)
 static void TIM3_Init(void)
 {
 	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
-	TIM2->CR1 |= TIM_CR1_DIR;
-	TIM2->PSC = 479;
-	TIM2->ARR = 0xFFFFFFFF;
-	TIM2->CR1 |= TIM_CR1_CEN;
+	TIM3->CR1 |= TIM_CR1_DIR;
+	TIM3->PSC = 479;
+	TIM3->ARR = 0xFFFFFFFF;
+	TIM3->CR1 |= TIM_CR1_CEN;
 }
 
 static uint32_t GetHardwareSeed(void)
@@ -69,7 +69,7 @@ uint32_t SoftRNG_Generate(void)
 	uint16_t seed16 = seedValue & 0xFFFF;
 	uint16_t lfsrVal = GetLFSR(seed16);
 	uint32_t xorVal = GetXORShift(seedValue);
-	uint32_t combined = (lfsrVal ^ xorVal) * 1664525 + 1013904223 ;
+	uint32_t combined = (lfsrVal & xorVal);
 	uint32_t randomVal = GetFNVHash(combined);
 	return randomVal;
 }
