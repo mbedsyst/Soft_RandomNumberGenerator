@@ -11,7 +11,6 @@ uint32_t count = 0;
 int main()
 {
     uint32_t random;
-
     LED_Init();
     W25Q_Init();
     SoftRNG_Init();
@@ -21,6 +20,7 @@ int main()
         random = SoftRNG_Generate();
         W25Q_WriteData(i, 0, 4, (uint8_t *)&random);
         count++;
+        delay_ms(i%100);
     }
 
     while(1)
